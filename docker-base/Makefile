@@ -1,4 +1,4 @@
-VERSION?=18.10
+VERSION?=20.04
 REVISION?=$(shell date --rfc-3339=date)
 TAG=${VERSION}-${REVISION}
 REGISTRY?=jaspnas
@@ -12,7 +12,7 @@ build:
 push-latest:
 	docker tag ${REGISTRY}/docker-base:${TAG} ${REGISTRY}/docker-base:${VERSION}
 	docker push ${REGISTRY}/docker-base:${VERSION}
-ifeq ($(VERSION),18.10)
+ifeq ($(VERSION),20.04)
 	docker tag ${REGISTRY}/docker-base:${TAG} ${REGISTRY}/docker-base:latest
 	docker push ${REGISTRY}/docker-base:latest
 endif
