@@ -1,7 +1,7 @@
 VERSION?=18.10
 REVISION?=$(shell date --rfc-3339=date)
 TAG=${VERSION}-${REVISION}
-REGISTRY?=luxas
+REGISTRY?=jaspnas
 UID_GID=$(shell id -u):$(shell id -g)
 
 all: build

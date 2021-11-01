@@ -1,9 +1,9 @@
 VERSION?=18.04
 REVISION?=$(shell date --rfc-3339=date)
 TAG=${VERSION}-${REVISION}
-REGISTRY?=luxas
+REGISTRY?=jaspnas
 KERNEL_EXTRA?=
-KERNEL_BUILDER_IMAGE=luxas/kernel-builder:gcc-7
+KERNEL_BUILDER_IMAGE=jaspnas/kernel-builder:gcc-11
 UID_GID=$(shell id -u):$(shell id -g)
 MIRROR_PREFIX?=fi.
 
