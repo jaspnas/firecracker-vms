@@ -1,4 +1,4 @@
-FROM luxas/ubuntu-base:UBUNTU_VERSION
+FROM jaspnas/ubuntu-base:UBUNTU_VERSION
 
 RUN apt-get update && \
     apt-get -y install --no-install-recommends \

@@ -1,9 +1,9 @@
-VERSION?=18.04
+VERSION?=20.04
 REVISION?=$(shell date --rfc-3339=date)
 TAG=${VERSION}-${REVISION}
-REGISTRY?=luxas
+REGISTRY?=jaspnas
 KERNEL_EXTRA?=
-KERNEL_BUILDER_IMAGE=luxas/kernel-builder:gcc-7
+KERNEL_BUILDER_IMAGE=jaspnas/kernel-builder:gcc-10
 UID_GID=$(shell id -u):$(shell id -g)
 MIRROR_PREFIX?=fi.
 
@@ -17,6 +17,9 @@ KERNEL_VERSION=4.19.47
 endif
 ifeq ($(VERSION),19.04)
 KERNEL_VERSION=5.1
+endif
+ifeq ($(VERSION),20.04)
+KERNEL_VERSION=5.10
 endif
 
 all: build
@@ -77,7 +80,7 @@ build: rootfs kernel
 push-latest:
 	docker tag ${REGISTRY}/ubuntu-base:${TAG} ${REGISTRY}/ubuntu-base:${VERSION}
 	docker push ${REGISTRY}/ubuntu-base:${VERSION}
-ifeq ($(VERSION),18.04)
+ifeq ($(VERSION),20.04)
 	docker tag ${REGISTRY}/ubuntu-base:${TAG} ${REGISTRY}/ubuntu-base:latest
 	docker push ${REGISTRY}/ubuntu-base:latest
 endif
