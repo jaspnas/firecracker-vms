@@ -21,4 +21,6 @@ RUN apk update && \
     vim \
     curl
 
+COPY interfaces /etc/network/
+RUN chown root:root /etc/network/interfaces
 COPY .bash_profile /root/
