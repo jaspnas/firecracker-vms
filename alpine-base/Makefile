@@ -54,5 +54,13 @@ build: rootfs kernel
 	--build-arg MIRROR_PREFIX=${MIRROR_PREFIX} \
 	-t ${REGISTRY}/alpine-base:${TAG} .
 
+push-latest:
+	docker tag ${REGISTRY}/alpine-base:${TAG} ${REGISTRY}/alpine-base:${VERSION}
+	docker push ${REGISTRY}/alpine-base:${VERSION}
+ifeq ($(VERSION),3.14.2)
+	docker tag ${REGISTRY}/alpine-base:${TAG} ${REGISTRY}/alpine-base:latest
+	docker push ${REGISTRY}/alpine-base:latest
+endif
+
 clean:
 	umount /tmp/alpine-rootfs && rm -r /tmp/alpine-rootfs
