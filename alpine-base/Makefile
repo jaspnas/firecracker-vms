@@ -5,7 +5,7 @@ REGISTRY?=jaspnas
 KERNEL_BUILDER_IMAGE=jaspnas/kernel-builder:gcc-10
 UID_GID=$(shell id -u):$(shell id -g)
 MIRROR_PREFIX?=fi
-KERNEL_VERSION=5.10
+KERNEL_VERSION=5.15
 
 all: build
 rootfs: build/rootfs-$(VERSION).tar.gz
