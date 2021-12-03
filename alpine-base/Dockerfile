@@ -18,7 +18,8 @@ RUN apk add --no-cache polkit \
     openssh-server \
     rng-tools \
     nano \
-    curl
+    curl \
+    openrc
 
 COPY interfaces /etc/network/
 RUN chown root:root /etc/network/interfaces
