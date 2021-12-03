@@ -7,6 +7,10 @@ UID_GID=$(shell id -u):$(shell id -g)
 MIRROR_PREFIX?=fi
 KERNEL_VERSION=5.15
 
+builddir:
+	rm -r $(shell pwd)/build
+	mkdir $(shell pwd)/build
+
 all: build
 rootfs: build/rootfs-$(VERSION).tar.gz
 build/rootfs-$(VERSION).tar.gz:
@@ -47,7 +51,7 @@ update-kconfig:
 		make EXTRAVERSION=${KERNEL_EXTRA} LOCALVERSION= olddefconfig && \
 		cp .config /tmp/.config"
 
-build: rootfs kernel
+build: builddir rootfs kernel
 	docker build --build-arg KERNEL_VERSION=${KERNEL_VERSION} \
 	--build-arg KERNEL_EXTRA=${KERNEL_EXTRA} \
 	--build-arg ALPINE_VERSION=${VERSION} \

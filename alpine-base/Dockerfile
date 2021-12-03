@@ -17,7 +17,7 @@ RUN apk add --no-cache polkit \
     command-not-found \
     openssh-server \
     rng-tools \
-    vim \
+    nano \
     curl
 
 COPY interfaces /etc/network/
