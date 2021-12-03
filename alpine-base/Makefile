@@ -1,4 +1,4 @@
-VERSION?=3.14.2
+VERSION?=3.15.0
 REVISION?=$(shell date --rfc-3339=date)
 TAG?=${VERSION}-${REVISION}
 REGISTRY?=jaspnas
