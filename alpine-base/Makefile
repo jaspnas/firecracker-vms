@@ -15,7 +15,7 @@ all: build
 rootfs: build/rootfs-$(VERSION).tar.gz
 build/rootfs-$(VERSION).tar.gz:
 	# Create new alpine linux filesystem
-	touch $(shell pwd)/build/rootfs-${VERSION}.tar.gz && wget https://dl-cdn.alpinelinux.org/alpine/v3.14/releases/x86_64/alpine-minirootfs-${VERSION}-x86_64.tar.gz -O $(shell pwd)/build/rootfs-${VERSION}.tar.gz
+	touch $(shell pwd)/build/rootfs-${VERSION}.tar.gz && wget https://dl-cdn.alpinelinux.org/alpine/v${VERSION::-2}/releases/x86_64/alpine-minirootfs-${VERSION}-x86_64.tar.gz -O $(shell pwd)/build/rootfs-${VERSION}.tar.gz
 
 kernel: build/kernel-$(KERNEL_VERSION).tar.gz
 build/kernel-$(KERNEL_VERSION).tar.gz:
@@ -61,7 +61,7 @@ build: builddir rootfs kernel
 push-latest:
 	docker tag ${REGISTRY}/alpine-base:${TAG} ${REGISTRY}/alpine-base:${VERSION}
 	docker push ${REGISTRY}/alpine-base:${VERSION}
-ifeq ($(VERSION),3.14.2)
+ifeq ($(VERSION),3.15.0)
 	docker tag ${REGISTRY}/alpine-base:${TAG} ${REGISTRY}/alpine-base:latest
 	docker push ${REGISTRY}/alpine-base:latest
 endif
