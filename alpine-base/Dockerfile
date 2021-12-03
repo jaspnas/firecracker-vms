@@ -13,6 +13,7 @@ RUN ln -sf /boot/Kconfig-${KERNEL_VERSION} /boot config-${KERNEL_VERSION} && \
   mkdir -p /usr/src/linux && ln -sf /boot/Kconfig-${KERNEL_VERSION} /usr/src/linux/.config
 
 RUN apk add --no-cache polkit \
+    bash \
     bash-completion \
     command-not-found \
     openssh-server \
