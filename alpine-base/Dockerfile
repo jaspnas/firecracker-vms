@@ -13,6 +13,16 @@ RUN ln -sf /boot/Kconfig-${KERNEL_VERSION} /boot config-${KERNEL_VERSION} && \
   mkdir -p /usr/src/linux && ln -sf /boot/Kconfig-${KERNEL_VERSION} /usr/src/linux/.config
 
 RUN apk add --no-cache polkit \
+    busybox-initscripts \
+    alpine-conf \
+    busybox-suid \
+    ifupdown-ng \
+    kmod \
+    kmod-openrc \
+    xz-libs \
+    ssl-client \
+    openssl \
+    zstd-libs \
     bash \
     bash-completion \
     command-not-found \
