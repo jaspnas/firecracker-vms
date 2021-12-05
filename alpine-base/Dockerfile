@@ -13,6 +13,7 @@ RUN ln -sf /boot/Kconfig-${KERNEL_VERSION} /boot config-${KERNEL_VERSION} && \
   mkdir -p /usr/src/linux && ln -sf /boot/Kconfig-${KERNEL_VERSION} /usr/src/linux/.config
 
 RUN apk add --no-cache polkit \
+    dbus \
     busybox-initscripts \
     alpine-conf \
     busybox-suid \
@@ -32,6 +33,6 @@ RUN apk add --no-cache polkit \
     curl \
     openrc
 
-COPY interfaces /etc/network/
+COPY interfaces /etc/network/interfaces
 RUN chown root:root /etc/network/interfaces
 COPY .bash_profile /root/
