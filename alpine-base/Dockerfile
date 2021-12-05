@@ -20,7 +20,7 @@ RUN apk add --no-cache polkit \
     kmod \
     kmod-openrc \
     xz-libs \
-    ssl-client \
+    ssl_client \
     openssl \
     zstd-libs \
     bash \
