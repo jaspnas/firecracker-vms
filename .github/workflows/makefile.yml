@@ -1,0 +1,22 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: setup
+      run: docker login --username jaspnas --password ${{ secrets.DOCKER_TOKEN }}
+      
+    - name: Make ubuntu-base
+      run: cd ./ubuntu-base && sudo make build && make push-latest
+      
+    - name: Make docker-base
+      run: cd ../docker-base && sudo make build && make push-latest
