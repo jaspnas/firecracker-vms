@@ -26,7 +26,7 @@ all: build
 rootfs: build/rootfs-$(VERSION).tar.gz
 build/rootfs-$(VERSION).tar.gz:
 	# Create a new Ubuntu filesystem from scratch using Debootstrap
-	docker run -it --rm --privileged -v $(shell pwd)/build:/build ubuntu:${VERSION} /bin/bash -c "\
+	docker run -i --rm --privileged -v $(shell pwd)/build:/build ubuntu:${VERSION} /bin/bash -c "\
 		source /etc/os-release && \
 		apt-get update -y && apt-get install debootstrap -y && \
 		debootstrap --arch=amd64 \$$UBUNTU_CODENAME /mnt http://${MIRROR_PREFIX}archive.ubuntu.com/ubuntu/ && \
@@ -36,7 +36,7 @@ build/rootfs-$(VERSION).tar.gz:
 kernel: build/kernel-$(KERNEL_VERSION)$(KERNEL_EXTRA).tar.gz
 build/kernel-$(KERNEL_VERSION)$(KERNEL_EXTRA).tar.gz:
 	# Compile the kernel from the specified config, and generate a tarball with the artifacts
-	docker run -it \
+	docker run -i \
 		-v $(shell pwd)/build:/build \
 		-v $(shell pwd)/Kconfig-${KERNEL_VERSION}:/tmp/.config \
 		${KERNEL_BUILDER_IMAGE} /bin/bash -c "\
@@ -53,13 +53,13 @@ build/kernel-$(KERNEL_VERSION)$(KERNEL_EXTRA).tar.gz:
 			chown ${UID_GID} /build/kernel-${KERNEL_VERSION}${KERNEL_EXTRA}.tar.gz"
 
 kshell:
-	docker run -it \
+	docker run -i \
 		-v $(shell pwd)/build:/build \
 		-v $(shell pwd)/Kconfig-${KERNEL_VERSION}:/tmp/.config \
 		${KERNEL_BUILDER_IMAGE} /bin/bash
 
 update-kconfig:
-	docker run -it \
+	docker run -i \
                 -v $(shell pwd)/build:/build \
                 -v $(shell pwd)/Kconfig-${KERNEL_VERSION}:/tmp/.config \
                 ${KERNEL_BUILDER_IMAGE} /bin/bash -c "\
