@@ -51,7 +51,7 @@ update-kconfig:
 		make EXTRAVERSION=${KERNEL_EXTRA} LOCALVERSION= olddefconfig && \
 		cp .config /tmp/.config"
 
-build: builddir rootfs kernel
+build: 	rootfs kernel
 	docker build --build-arg KERNEL_VERSION=${KERNEL_VERSION} \
 	--build-arg KERNEL_EXTRA=${KERNEL_EXTRA} \
 	--build-arg ALPINE_VERSION=${VERSION} \
