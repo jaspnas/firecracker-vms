@@ -21,3 +21,9 @@ jobs:
       
     - name: Make docker-base
       run: cd ./docker-base && sudo make build && make push-latest
+      
+    - name: Make alpine-base
+      run: cd ./alpine-base && sudo make build && make push-latest
+      
+    - name: Make docker-alpine
+      run: cd ./docker-alpine && sudo make build && make push-latest
