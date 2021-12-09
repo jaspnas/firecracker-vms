@@ -15,7 +15,7 @@ all: build
 rootfs: build/rootfs-$(VERSION).tar.gz
 build/rootfs-$(VERSION).tar.gz:
 	# Create new alpine linux filesystem
-	touch $(shell pwd)/build/rootfs-${VERSION}.tar.gz && wget https://dl-cdn.alpinelinux.org/alpine/v${VERSION::-2}/releases/x86_64/alpine-minirootfs-${VERSION}-x86_64.tar.gz -O $(shell pwd)/build/rootfs-${VERSION}.tar.gz
+	touch $(shell pwd)/build/rootfs-${VERSION}.tar.gz && wget https://dl-cdn.alpinelinux.org/alpine/v3.15/releases/x86_64/alpine-minirootfs-${VERSION}-x86_64.tar.gz -O $(shell pwd)/build/rootfs-${VERSION}.tar.gz
 
 kernel: build/kernel-$(KERNEL_VERSION).tar.gz
 build/kernel-$(KERNEL_VERSION).tar.gz:
