@@ -19,7 +19,7 @@ build/rootfs-$(VERSION).tar.gz:
 
 kernel: build/kernel-$(KERNEL_VERSION).tar.gz
 build/kernel-$(KERNEL_VERSION).tar.gz:
-	docker run -it \
+	docker run \
 		-v $(shell pwd)/build:/build \
 		-v $(shell pwd)/Kconfig-${KERNEL_VERSION}:/tmp/.config \
 		${KERNEL_BUILDER_IMAGE} /bin/bash -c "\
@@ -36,13 +36,13 @@ build/kernel-$(KERNEL_VERSION).tar.gz:
 			chown ${UID_GID} /build/kernel-${KERNEL_VERSION}${KERNEL_EXTRA}.tar.gz"
 
 kshell:
-	docker run -it \
+	docker run \
 		-v $(shell pwd)/build:/build \
 		-v $(shell pwd)/Kconfig-${KERNEL_VERSION}:/tmp/.config \
 		${KERNEL_BUILDER_IMAGE} /bin/bash
 
 update-kconfig:
-	docker run -it \
+	docker run \
 			-v $(shell pwd)/build:/build \
 			-v $(shell pwd )/Kconfig-${KERNEL_VERSION}:/tmp/.config \
 			${KERNEL_BUILDER_IMAGE} /bin/bash -c "\
